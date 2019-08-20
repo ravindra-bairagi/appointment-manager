@@ -1,4 +1,4 @@
-# appointment-manager
+# Appointment Manager
 Appointment Manager Assignment
 
 # Technology Stack
