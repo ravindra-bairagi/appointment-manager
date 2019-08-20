@@ -13,9 +13,9 @@ https://c376e782-7294-4a8a-a5e6-21e690ee259a-bluemix.cloudant.com/appointments/_
 (Please use JSON beautifier to view response or use Postman)
 
 # Steps to setup 
-1] Download or clone repository (https://help.github.com/en/articles/cloning-a-repository)
-2] Open 'appointment-manager' directory in command prompt
-3] Run 'npm install'
-4] Run 'ionic serve'. This command will open application in browser window
+1] Download or clone repository (https://help.github.com/en/articles/cloning-a-repository) <br/>
+2] Open 'appointment-manager' directory in command prompt <br/>
+3] Run 'npm install' <br/>
+4] Run 'ionic serve'. This command will open application in browser window <br/>
 
 
