@@ -2,7 +2,7 @@
 Appointment Manager Assignment
 
 # Technology Stack
-Ionic 4 / Angular 7 - (https://ionicframework.com/)
+Ionic 4 / Angular 7 - (https://ionicframework.com/) (https://ionicframework.com/docs/installation/cli)
 
 # Database
 For this assignment, I have used IBM Cloudant database (https://www.ibm.com/in-en/cloud/cloudant)
