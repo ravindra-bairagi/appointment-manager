@@ -5,9 +5,8 @@ Appointment Manager Assignment
 Ionic 4 / Angular 7 - (https://ionicframework.com/) (https://ionicframework.com/docs/installation/cli)
 
 # Database
-For this assignment, I have used IBM Cloudant database (https://www.ibm.com/in-en/cloud/cloudant)
-Below is the link which will load all data from database in json format
-
+For this assignment, I have used IBM Cloudant database (https://www.ibm.com/in-en/cloud/cloudant). <br />
+Further is the link which will load all data from database in json format:<br />
 https://c376e782-7294-4a8a-a5e6-21e690ee259a-bluemix.cloudant.com/appointments/_all_docs?include_docs=true
 
 (Please use JSON beautifier to view response or use Postman)
