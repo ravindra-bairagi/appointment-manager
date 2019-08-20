@@ -1,0 +1,9 @@
+
+// override single date selection background color
+.singledate {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);border-radius: 10%; margin-bottom: 5px;
+}
+// assign fix height for calender date 
+.monthview-datetable td {
+    height: 120px;
+}

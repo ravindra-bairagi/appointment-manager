@@ -1,0 +1,7 @@
+{
+  "name": "appointmentManger",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

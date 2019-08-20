@@ -1,0 +1,72 @@
+
+<ion-header>
+
+  <ion-toolbar>
+    <ion-title>New Appointment</ion-title>
+      <ion-buttons slot="end">
+          <ion-button expand="block" [color]="secondary" (click)="closeModal()">Close</ion-button>
+        </ion-buttons>
+  </ion-toolbar>
+  
+  </ion-header>
+  
+  
+  <ion-content>
+
+<form [formGroup]="appointmentForm">
+
+    <ion-list>
+        <ion-item>
+            <ion-label position="floating">Summary <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input formControlName="title" type="text">
+            </ion-input>
+        </ion-item>
+        <div class="validation-errors">
+            <ng-container *ngFor="let validation of validationMessages.title">
+              <div class="error-message" *ngIf="appointmentForm.get('title').hasError(validation.type) && (appointmentForm.get('title').dirty || appointmentForm.get('title').touched)">
+                  <ion-icon class="icon" name="information-circle-outline"></ion-icon><span class="text" > {{ validation.message }}</span>
+              </div>
+            </ng-container>
+          </div>
+        <ion-item>
+            <ion-label position="floating">Location <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input formControlName="location" type="text">
+            </ion-input>
+        </ion-item>
+        <div class="validation-errors">
+            <ng-container *ngFor="let validation of validationMessages.location">
+              <div class="error-message" *ngIf="appointmentForm.get('location').hasError(validation.type) && (appointmentForm.get('location').dirty || appointmentForm.get('location').touched)">
+                  <ion-icon class="icon" name="information-circle-outline"></ion-icon><span class="text" > {{ validation.message }}</span>
+              </div>
+            </ng-container>
+          </div>
+          <ion-item>
+              <ion-label position="floating">Start Date <ion-text color="danger">*</ion-text></ion-label>
+              <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MMM DD YYYY" formControlName="startTime" [max]="maxDate"></ion-datetime>
+          </ion-item>
+          <div class="validation-errors">
+              <ng-container *ngFor="let validation of validationMessages.startTime">
+                <div class="error-message" *ngIf="appointmentForm.get('startTime').hasError(validation.type) && (appointmentForm.get('startTime').dirty || appointmentForm.get('startTime').touched)">
+                    <ion-icon class="icon" name="information-circle-outline"></ion-icon><span class="text" > {{ validation.message }}</span>
+                </div>
+              </ng-container>
+            </div>
+            <ion-item>
+                <ion-label position="floating">End Date <ion-text color="danger">*</ion-text></ion-label>
+                <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MMM DD YYYY" formControlName="endTime" [max]="maxDate" [min]="appointmentForm.get('startTime').value"></ion-datetime>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.endTime">
+                  <div class="error-message" *ngIf="appointmentForm.get('endTime').hasError(validation.type) && (appointmentForm.get('endTime').dirty || appointmentForm.get('endTime').touched)">
+                      <ion-icon class="icon" name="information-circle-outline"></ion-icon><span class="text" > {{ validation.message }}</span>
+                  </div>
+                </ng-container>
+              </div>
+    </ion-list>
+    <ion-row class="signin">
+        <ion-col>
+            <ion-button (click)="onSave()" color="primary" shape="full" expand="block" [disabled]="!appointmentForm.valid">Save</ion-button>
+        </ion-col>
+    </ion-row>
+  </form>
+  </ion-content>

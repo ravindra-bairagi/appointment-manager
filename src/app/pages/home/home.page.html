@@ -1,0 +1,111 @@
+<ion-header>
+  <ion-toolbar mode="md">
+    <ion-title text-left>
+      Appointment Manager
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button size="small" fill="outline" color="primary" (click)="setToday()">Today</ion-button>
+      <ion-button size="small" fill="outline" color="primary" (click)="showAppointmentFormModal()">New +</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+   <!-- Card for adding a new event -->
+
+   <ng-template #template let-view="view" let-row="row" let-col="col">
+      <div class="datebox"><div class="content">
+   <div><span> {{view.dates[row*7+col].label}}</span></div>
+    <div *ngIf="view.dates[row*7+col].events.length > 2">
+        <div no-padding *ngFor="let event of view.dates[row*7+col].events | slice:0:2" class="singledate">
+            <ion-label style="font-size: 12px;" (click)="onEventSelected(event)">
+                  {{event.title}}
+              </ion-label>
+    </div>
+    <div no-padding class="singledate">
+        <ion-label style="font-size: 75%;font-weight: bold;" (click)="scrollTo('eventlist')">
+              {{view.dates[row*7+col].events.length - 2 }} more event(s)
+           </ion-label>
+      </div>
+    </div>
+    <div *ngIf="view.dates[row*7+col].events.length <= 2">
+        <div no-padding *ngFor="let event of view.dates[row*7+col].events" class="singledate">
+            <ion-label style="font-size: 12px;" (click)="onEventSelected(event)">
+                  {{event.title}}
+              </ion-label>
+    </div>
+    </div>
+  </div></div>
+
+</ng-template>
+  <ion-row> 
+    <!-- Move back one screen of the slides -->
+    <ion-col size="2" text-left>
+      <ion-button fill="clear" (click)="back()">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col size="8" text-center>
+      <ion-text color="primary">
+        <h5>{{ viewTitle }}</h5>
+      </ion-text>
+    </ion-col>
+    <!-- Move forward one screen of the slides -->
+    <ion-col size="2" text-right>
+      <ion-button fill="clear" (click)="next()">
+        <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ng-template #emptytemplate let-displayEvent="displayEvent">
+    <div class="calendar-event-inner"></div>
+</ng-template>
+<ng-template #eventdetailtemplate let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
+ <div>
+  <ion-list id="eventlist">
+      <ion-list-header>
+          <ion-label>Events: </ion-label>
+        </ion-list-header>
+    <ion-item  *ngIf="(selectedDate?.events.length == 0)">
+        <ion-text> No events found for selected date</ion-text>
+    </ion-item>
+    <ion-item *ngFor="let event of selectedDate?.events"> 
+      <ion-label text-wrap>
+          <ion-text color="primary">
+            <h3>Title</h3>
+          </ion-text>
+          <p>{{event.title}}</p>
+          <ion-text color="primary">
+            <p>Location: {{event.location}}</p>
+          </ion-text>
+        </ion-label>
+        <ion-button item-end (click)="showAppointmentFormModal(event)">
+          <ion-icon name="create"></ion-icon>
+        </ion-button>
+        <ion-button item-end (click)="presentAppointmentRemoveConfirm(event)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+    </ion-item>
+ </ion-list>
+</div>
+    </ng-template>
+
+  <calendar 
+    [eventSource]="eventSource" 
+    [calendarMode]="calendar.mode" 
+    [currentDate]="calendar.currentDate"
+    (onEventSelected)="onEventSelected($event)"
+    (onTitleChanged)="onViewTitleChanged($event)"
+    (onTimeSelected)="onTimeSelected($event)" 
+    [monthviewDisplayEventTemplate]="platform.width() > 814 ? template : null"
+    [monthviewInactiveDisplayEventTemplate] = "platform.width() > 814 ? template : null"
+    [weekviewAllDayEventTemplate]="emptytemplate"
+    [monthviewEventDetailTemplate]="eventdetailtemplate"
+    startHour="6"
+    endHour="20"
+    step="30"
+    startingDayWeek="1">
+  </calendar>
+  </div>
+</ion-content>

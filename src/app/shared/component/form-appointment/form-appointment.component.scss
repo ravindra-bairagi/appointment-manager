@@ -1,0 +1,18 @@
+// validation error css
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-left: 10px;
+    margin-top: 10px;
+
+    .icon {
+        display: inline-block;
+        vertical-align: middle;
+       }
+       
+       .text{
+         display: inline-block;
+         vertical-align: middle;
+         margin-left: 2px;
+       }
+}
